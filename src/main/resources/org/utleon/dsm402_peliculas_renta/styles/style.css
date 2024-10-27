@@ -1,0 +1,81 @@
+.style-text-main {
+    -fx-font-family: 'Verdana';
+    -fx-font-weight: bold;
+}
+
+.title {
+    -fx-font-size: 25px;
+}
+
+.gb-main {
+    -fx-background-color: linear-gradient(to bottom, #080A1E, #202877);
+}
+
+.gb-main-alternative {
+    -fx-background-color: linear-gradient(to bottom, #000000, #080A1E, #202877);
+}
+
+.gb-secondary {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 25px 25px 0 0;
+}
+
+.btn-main {
+    -fx-text-fill: #ffffff;
+    -fx-background-color: linear-gradient(to left, #080A1E, #202877);
+}
+
+.btn-main:hover {
+    -fx-background-color: linear-gradient(to left, #202877, #080A1E);
+    -fx-cursor: hand; 
+}
+
+.textfield:focused {
+    -fx-border-color: #202877;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+
+.btn-secondary {
+    -fx-text-fill: #202877;
+    -fx-background-color: #ffffff;
+}
+
+
+.btn-secondary:hover {
+    -fx-background-color: #d8e6fa;
+    -fx-text-fill: #202877;
+    -fx-cursor: hand; 
+}
+
+
+.text-main {
+    -fx-text-fill: #202877;
+}
+
+
+.link {
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-border: none;
+}
+
+.link:hover {
+    -fx-text-fill: #202877;       
+    -fx-cursor: hand; 
+}
+
+
+.link-alternative {
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-border: none;
+}
+
+
+.link-alternative:hover {
+    -fx-text-fill: #d8e6fa;       
+    -fx-cursor: hand; 
+}

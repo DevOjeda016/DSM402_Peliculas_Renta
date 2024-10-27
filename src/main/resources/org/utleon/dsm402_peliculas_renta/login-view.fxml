@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="gb-main" stylesheets="@styles/style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.utleon.dsm402_peliculas_renta.controller.LoginController">
+   <children>
+      <VBox prefHeight="600.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <AnchorPane prefHeight="246.0" prefWidth="400.0">
+               <children>
+                  <StackPane layoutX="101.0" layoutY="21.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="192.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="236.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+                           <image>
+                              <Image url="@img/logotipo.png" />
+                           </image>
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+               </children></AnchorPane>
+            <AnchorPane maxWidth="1.7976931348623157E308" prefHeight="462.0" prefWidth="400.0" styleClass="gb-secondary">
+               <children>
+                  <VBox alignment="CENTER" layoutX="60.0" layoutY="144.0" prefHeight="200.0" prefWidth="300.0" spacing="15.0" AnchorPane.bottomAnchor="54.400000000000006" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="140.0">
+                     <children>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefWidth="153.0" spacing="5.0">
+                           <children>
+                              <Label maxWidth="400.0" text=" Usuario o correo electrónico" textFill="#e3e7fa">
+                                 <styleClass>
+                                    <String fx:value="style-text-main" />
+                                    <String fx:value="text-main" />
+                                 </styleClass>
+                              </Label>
+                              <TextField fx:id="fieldUser" maxWidth="400.0" prefHeight="30.0" styleClass="textfield" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefWidth="153.0" spacing="5.0">
+                           <children>
+                              <Label maxWidth="400.0" text="Contraseña" textFill="#e3e7fa">
+                                 <styleClass>
+                                    <String fx:value="text-main" />
+                                    <String fx:value="style-text-main" />
+                                 </styleClass>
+                              </Label>
+                              <PasswordField fx:id="fieldPassword" alignment="TOP_LEFT" maxWidth="400.0" prefHeight="30.0" styleClass="textfield" />
+                           </children>
+                        </VBox>
+                        <Button fx:id="btnLogin" maxHeight="30.0" maxWidth="400.0" minHeight="30.0" mnemonicParsing="false" prefHeight="30.0" text="Iniciar sesión">
+                           <styleClass>
+                              <String fx:value="btn-main" />
+                              <String fx:value="style-text-main" />
+                           </styleClass>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Button>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="2.0" styleClass="text-main">
+                           <children>
+                              <Label alignment="CENTER" styleClass="style-text-main" text="¿No hay algo que rentar o devolver? " />
+                              <Hyperlink fx:id="linkExit" text="Salir de la aplicación" underline="true">
+                                 <styleClass>
+                                    <String fx:value="link" />
+                                    <String fx:value="style-text-main" />
+                                 </styleClass>
+                              </Hyperlink>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <Label alignment="CENTER" layoutY="43.0" text="¡Inicia sesión y empieza a rentar!" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="285.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="30.0">
+                     <styleClass>
+                        <String fx:value="style-text-main" />
+                        <String fx:value="title" />
+                        <String fx:value="text-main" />
+                     </styleClass>
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

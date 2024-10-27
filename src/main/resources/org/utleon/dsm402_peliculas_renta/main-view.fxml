@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="400.0" styleClass="gb-main-alternative" stylesheets="@styles/style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.utleon.dsm402_peliculas_renta.controller.MainController">
+   <children>
+      <VBox layoutX="150.0" layoutY="200.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane prefHeight="300.0" prefWidth="400.0">
+               <children>
+                  <StackPane layoutX="100.0" layoutY="157.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="157.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="157.0">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/logotipo.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="148.0" prefWidth="400.0">
+               <children>
+                  <VBox alignment="CENTER" layoutX="50.0" layoutY="30.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="76.0" prefWidth="300.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="30.0">
+                     <children>
+                        <Button fx:id="btnStart" maxHeight="30.0" maxWidth="400.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="299.0" text="Comenzar">
+                           <styleClass>
+                              <String fx:value="btn-secondary" />
+                              <String fx:value="style-text-main" />
+                           </styleClass>
+                        </Button>
+                        <HBox alignment="CENTER" prefHeight="26.0" prefWidth="299.0">
+                           <children>
+                              <Label text="Desarrollado por " textFill="WHITE">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Label>
+                              <Hyperlink fx:id="linkGitHub" styleClass="link-alternative" text="DevOjeda016" underline="true">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Hyperlink>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
