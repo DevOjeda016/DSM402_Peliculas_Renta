@@ -14,19 +14,7 @@ import java.util.Objects;
 
 public class LoginController {
 
-    @FXML
-    private Button btnLogin;
-
-    @FXML
-    private PasswordField fieldPassword;
-
-    @FXML
-    private TextField fieldUser;
-
-    @FXML
-    private Hyperlink linkExit;
-
-    public ArrayList<User> users = new ArrayList<>();;
+    public ArrayList<User> users = new ArrayList<>();
     public String[][] userData = {
             {"DevOjeda016", "danielojeda16vvz@gmail.com", "DevOjeda2005*"},
             {"johndoe", "johndoe@example.com", "password123"},
@@ -39,7 +27,14 @@ public class LoginController {
             {"tonystark", "tonystark@example.com", "ironman123"},
             {"steverogers", "steverogers@example.com", "capPass"},
     };
-
+    @FXML
+    private Button btnLogin;
+    @FXML
+    private PasswordField fieldPassword;
+    @FXML
+    private TextField fieldUser;
+    @FXML
+    private Hyperlink linkExit;
 
     public void initialize() {
         for (String[] data : userData) {
@@ -86,11 +81,11 @@ public class LoginController {
     }
 
     public User findUser(String userOrEmail, String pass) {
-        for (User user : users){
+        for (User user : users) {
             if ((user.getUsername().equals(userOrEmail) || user.getEmail().equals(userOrEmail)) && user.getPassword().equals(pass)) {
                 return user;
             }
-        };
+        }
         return null;
     }
 

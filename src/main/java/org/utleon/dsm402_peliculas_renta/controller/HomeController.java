@@ -1,106 +1,25 @@
 package org.utleon.dsm402_peliculas_renta.controller;
 
-import javafx.scene.image.Image;
-import javafx.scene.layout.VBox;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
-
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import org.utleon.dsm402_peliculas_renta.model.Movie;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.Objects;
 
 public class HomeController {
-    @FXML
-    private VBox buttons;
-
-    @FXML
-    private TableColumn<Movie, String> colDuration;
-
-    @FXML
-    private TableColumn<Movie, String> colDurationRent;
-
-    @FXML
-    private TableColumn<Movie, String> colGenre;
-
-    @FXML
-    private TableColumn<Movie, String> colGenreRent;
-
-    @FXML
-    private TableColumn<Movie, Integer> colId;
-
-    @FXML
-    private TableColumn<Movie, Integer> colIdRent;
-
-    @FXML
-    private TableColumn<Movie, String> colLanguage;
-
-    @FXML
-    private TableColumn<Movie, String> colLanguageRent;
-
-    @FXML
-    private TableColumn<Movie, Float> colPrice;
-
-    @FXML
-    private TableColumn<Movie, Float> colPriceRent;
-
-    @FXML
-    private TableColumn<Movie, String> colTitle;
-
-    @FXML
-    private TableColumn<Movie, String> colTitleRent;
-
-    @FXML
-    private TableColumn<Movie, Integer> colYear;
-
-    @FXML
-    private TableColumn<Movie, Integer> colYearRent;
-
-    @FXML
-    private TextField fieldDuration;
-
-    @FXML
-    private TextField fieldGenre;
-
-    @FXML
-    private TextField fieldLanguage;
-
-    @FXML
-    private TextField fieldPrice;
-
-    @FXML
-    private TextField fieldTitle;
-
-    @FXML
-    private TextField fieldYear;
-
-    @FXML
-    private ImageView imageView;
-
-    @FXML
-    private TableView<Movie> tableAvaible;
-
-    @FXML
-    private TableView<Movie> tableRent;
-
-    @FXML
-    private VBox vBoxForm;
-
-    private String nameImage = "nothing.jpg";
-
     Button btnChooseFile = new Button("Escoger imagen");
     Button btnAdd = new Button("Añadir");
     Button btnDelete = new Button("Eliminar");
@@ -110,10 +29,60 @@ public class HomeController {
     Button btnReturn = new Button("Devolver");
     Button btnCancel = new Button("Cancelar");
     Button btnNewMovie = new Button("Nueva película");
-
     ObservableList<Movie> moviesAvialable;
     ObservableList<Movie> rentedMovies;
     int count = 20;
+    @FXML
+    private VBox buttons;
+    @FXML
+    private TableColumn<Movie, String> colDuration;
+    @FXML
+    private TableColumn<Movie, String> colDurationRent;
+    @FXML
+    private TableColumn<Movie, String> colGenre;
+    @FXML
+    private TableColumn<Movie, String> colGenreRent;
+    @FXML
+    private TableColumn<Movie, Integer> colId;
+    @FXML
+    private TableColumn<Movie, Integer> colIdRent;
+    @FXML
+    private TableColumn<Movie, String> colLanguage;
+    @FXML
+    private TableColumn<Movie, String> colLanguageRent;
+    @FXML
+    private TableColumn<Movie, Float> colPrice;
+    @FXML
+    private TableColumn<Movie, Float> colPriceRent;
+    @FXML
+    private TableColumn<Movie, String> colTitle;
+    @FXML
+    private TableColumn<Movie, String> colTitleRent;
+    @FXML
+    private TableColumn<Movie, Integer> colYear;
+    @FXML
+    private TableColumn<Movie, Integer> colYearRent;
+    @FXML
+    private TextField fieldDuration;
+    @FXML
+    private TextField fieldGenre;
+    @FXML
+    private TextField fieldLanguage;
+    @FXML
+    private TextField fieldPrice;
+    @FXML
+    private TextField fieldTitle;
+    @FXML
+    private TextField fieldYear;
+    @FXML
+    private ImageView imageView;
+    @FXML
+    private TableView<Movie> tableAvaible;
+    @FXML
+    private TableView<Movie> tableRent;
+    @FXML
+    private VBox vBoxForm;
+    private String nameImage = "nothing.jpg";
 
     public void initialize() {
         // Tabla de películas disponibles
@@ -276,31 +245,60 @@ public class HomeController {
     }
 
     public void confirmEdition() {
-        Movie selectedMovie = tableAvaible.getSelectionModel().getSelectedItem();
-        if (selectedMovie != null) {
-            selectedMovie.setTitle(fieldTitle.getText());
-            selectedMovie.setGenre(fieldGenre.getText());
-            selectedMovie.setDuration(fieldDuration.getText());
-            selectedMovie.setLanguage(fieldLanguage.getText());
-            selectedMovie.setReleaseYear(Integer.parseInt(fieldYear.getText()));
-            selectedMovie.setRentalPrice(Float.parseFloat(fieldPrice.getText()));
-            if (!Objects.equals(nameImage, "nothing.jpg")) {
-                selectedMovie.setImg(nameImage);
+        if (validarCampos()) {
+            Movie selectedMovie = tableAvaible.getSelectionModel().getSelectedItem();
+            if (selectedMovie != null) {
+                selectedMovie.setTitle(fieldTitle.getText());
+                selectedMovie.setGenre(fieldGenre.getText());
+                selectedMovie.setDuration(fieldDuration.getText());
+                selectedMovie.setLanguage(fieldLanguage.getText());
+                try {
+                    selectedMovie.setReleaseYear(Integer.parseInt(fieldYear.getText()));
+                } catch (Exception e) {
+                    mostrarAlerta("Campo numérico", "Por favor, ingresa un formato de año válido.");
+                    fieldYear.requestFocus();
+                    return;
+                }
+                try {
+                    selectedMovie.setRentalPrice(Float.parseFloat(fieldPrice.getText()));
+                } catch (Exception e) {
+                    mostrarAlerta("Campo numérico", "Por favor, ingresa un formato para el precio válido.");
+                    fieldPrice.requestFocus();
+                    return;
+                }
+                if (!Objects.equals(nameImage, "nothing.jpg")) {
+                    selectedMovie.setImg(nameImage);
+                }
             }
+            nameImage = "nothing.jpg";
+            tableAvaible.refresh();
+            clearEdit();
         }
-        nameImage = "nothing.jpg";
-        tableAvaible.refresh();
-        clearEdit();
-
     }
 
     public void add() {
-        Movie movie = new Movie(count++, fieldTitle.getText(), Integer.parseInt(fieldYear.getText()), fieldGenre.getText(),
-                fieldLanguage.getText(), fieldDuration.getText(), Float.parseFloat(fieldPrice.getText()), true, nameImage);
-        moviesAvialable.add(movie);
-        cleanForm();
-        imageView.setImage(new Image("file:C:\\Dev\\university\\javafx\\DSM402_Peliculas_Renta\\src\\main\\resources\\org\\utleon\\dsm402_peliculas_renta\\img\\" + nameImage));
-
+        if (validarCampos()) {
+            Movie movie = new Movie(0, fieldTitle.getText(), 0, fieldGenre.getText(),
+                    fieldLanguage.getText(), fieldDuration.getText(), 0, true, nameImage);
+            try {
+                movie.setReleaseYear(Integer.parseInt(fieldYear.getText()));
+            } catch (Exception e) {
+                mostrarAlerta("Campo numérico", "Por favor, ingresa un formato de año válido.");
+                fieldYear.requestFocus();
+                return;
+            }
+            try {
+                movie.setRentalPrice(Float.parseFloat(fieldPrice.getText()));
+            } catch (Exception e) {
+                mostrarAlerta("Campo numérico", "Por favor, ingresa un formato para el precio válido.");
+                fieldPrice.requestFocus();
+                return;
+            }
+            movie.setId(count++);
+            moviesAvialable.add(movie);
+            cleanForm();
+            imageView.setImage(new Image("file:C:\\Dev\\university\\javafx\\DSM402_Peliculas_Renta\\src\\main\\resources\\org\\utleon\\dsm402_peliculas_renta\\img\\" + nameImage));
+        }
     }
 
     public void openFileChooser() {
@@ -336,5 +334,60 @@ public class HomeController {
         button.setPrefWidth(260.8);
         button.setPrefHeight(30);
         button.setMaxHeight(Double.MAX_VALUE);
+    }
+
+    private boolean validarCampos() {
+        if (fieldTitle.getText() == null || fieldTitle.getText().trim().isEmpty()) {
+            mostrarAlerta("Campo vacío", "Por favor, ingresa el nombre de la pelicula.");
+            fieldTitle.requestFocus();
+            return false;
+        }
+
+        if (fieldYear.getText() == null || fieldYear.getText().trim().isEmpty()) {
+            mostrarAlerta("Campo vacío", "Por favor, ingresa el año de la pelicula.");
+            fieldYear.requestFocus();
+            return false;
+        }
+
+        if (fieldGenre.getText() == null || fieldGenre.getText().trim().isEmpty()) {
+            mostrarAlerta("Campo vacío", "Por favor, ingresa el genero de la pelicula.");
+            fieldGenre.requestFocus();
+            return false;
+        }
+
+        if (fieldLanguage.getText() == null || fieldLanguage.getText().trim().isEmpty()) {
+            mostrarAlerta("Campo vacío", "Por favor, ingresa el idioma de la pelicula.");
+            fieldLanguage.requestFocus();
+            return false;
+        }
+
+        if (fieldDuration.getText() == null || fieldDuration.getText().trim().isEmpty()) {
+            mostrarAlerta("Campo vacío", "Por favor, ingresa la duracion de la pelicula.");
+            fieldDuration.requestFocus();
+            return false;
+        }
+
+        if (fieldPrice.getText() == null || fieldPrice.getText().trim().isEmpty()) {
+            mostrarAlerta("Campo vacío", "Por favor, ingresa el precio de la pelicula.");
+            fieldPrice.requestFocus();
+            return false;
+        }
+        return true;
+    }
+
+    private void mostrarAlerta(String titulo, String mensaje) {
+        Alert alerta = new Alert(Alert.AlertType.WARNING);
+        alerta.setTitle(titulo);
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensaje);
+        alerta.showAndWait();
+    }
+
+    private void mostrarAlertaSuccess(String titulo, String mensaje) {
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle(titulo);
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensaje);
+        alerta.showAndWait();
     }
 }
